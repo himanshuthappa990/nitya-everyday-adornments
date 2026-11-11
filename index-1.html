@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitya — Everyday Indian Adornments</title>
+  <meta name="description" content="Daily-wear Indian jewelry & clothing accessories. Thoughtfully designed pieces for modern life." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --bg-alt: #f3ebe3;
+      --ink: #1c1917;
+      --ink-soft: #57534e;
+      --gold: #b45309;
+      --gold-light: #d97706;
+      --accent: #9a3412;
+      --card: #ffffff;
+      --border: #e7e5e4;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(28, 25, 23, 0.06);
+      --shadow-hover: 0 12px 40px rgba(28, 25, 23, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: white;
+    }
+
+    .btn-primary:hover { background: #292524; }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--ink);
+    }
+
+    .btn-outline:hover { border-color: var(--ink); }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover { border-color: var(--ink); }
+
+    /* Hero */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.75rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 440px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #f5e6d3 0%, #e8d5c4 50%, #d4b8a0 100%);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hero-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    .hero-visual-inner .badge {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-visual-inner h2 {
+      font-size: 2.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-visual-inner p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+
+    /* Trust bar */
+    .trust {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .trust-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Section common */
+    section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4.5rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--ink-soft);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .product-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: transparent;
+    }
+
+    .product-image {
+      aspect-ratio: 1;
+      background: var(--bg-alt);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.04);
+    }
+
+    .product-image .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+      background: linear-gradient(160deg, #f8f1e9 0%, #efe4d8 100%);
+    }
+
+    .product-image .placeholder .icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.7;
+    }
+
+    .product-image .placeholder span {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: white;
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .product-badge.new { color: var(--accent); }
+    .product-badge.best { color: var(--gold); }
+
+    .product-info {
+      padding: 1.15rem 1.25rem 1.35rem;
+    }
+
+    .product-info h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .product-info .meta {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-bottom: 0.75rem;
+    }
+
+    .product-info .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .price {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .price s {
+      color: var(--ink-soft);
+      font-weight: 400;
+      font-size: 0.85rem;
+      margin-left: 0.4rem;
+    }
+
+    .add-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1.1rem;
+    }
+
+    .add-btn:hover {
+      background: var(--ink);
+      color: white;
+      border-color: var(--ink);
+    }
+
+    /* Categories */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .cat-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s;
+    }
+
+    .cat-card:hover { transform: scale(1.02); }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+      z-index: 1;
+    }
+
+    .cat-card .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .cat-card span {
+      font-size: 0.8rem;
+      opacity: 0.85;
+    }
+
+    .cat-1 { background: linear-gradient(160deg, #c4a484, #8b6f55); }
+    .cat-2 { background: linear-gradient(160deg, #a78b71, #6b5344); }
+    .cat-3 { background: linear-gradient(160deg, #d4b896, #9c7b5c); }
+    .cat-4 { background: linear-gradient(160deg, #b89b7c, #7a5c45); }
+
+    /* AI Feature Banner */
+    .ai-banner {
+      background: linear-gradient(135deg, #1f1c1a 0%, #292524 100%);
+      color: white;
+      border-radius: 20px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin: 0 1.5rem;
+      max-width: calc(1280px - 3rem);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .ai-banner h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .ai-banner p {
+      opacity: 0.85;
+      margin-bottom: 1.75rem;
+      font-size: 1.05rem;
+    }
+
+    .ai-banner .btn-primary {
+      background: var(--gold);
+    }
+
+    .ai-banner .btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .ai-visual {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .ai-visual .chat-line {
+      margin-bottom: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .ai-visual .chat-line.user {
+      background: rgba(180, 83, 9, 0.25);
+      margin-left: 1.5rem;
+    }
+
+    .ai-visual .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.6;
+      margin-bottom: 0.3rem;
+    }
+
+    /* Story */
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .story-image {
+      aspect-ratio: 4/5;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #e8d5c4, #c4a484);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .story-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .story-content p {
+      color: var(--ink-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink);
+      color: #a8a29e;
+      padding: 4rem 1.5rem 2rem;
+      margin-top: 3rem;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col a {
+      color: #a8a29e;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: white; }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid #44403c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2.5rem; }
+      .hero-visual { max-width: 360px; margin: 0 auto; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .ai-banner { grid-template-columns: 1fr; padding: 2rem; }
+      .story { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .categories { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="nav">
+      <a href="#" class="logo">Nitya<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#categories">Collections</a></li>
+        <li><a href="#ai">AI Stylist</a></li>
+        <li><a href="#story">Our Story</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" title="Search" aria-label="Search">⌕</button>
+        <button class="icon-btn" title="Cart" aria-label="Cart">◎</button>
+        <a href="#shop" class="btn btn-primary">Shop Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Everyday Indian<br><em>adornments</em><br>made for real life</h1>
+      <p>Lightweight jhumkas, stackable kadas, minimalist chains and soft accessories — designed to move with you from morning chai to evening plans.</p>
+      <div class="hero-cta">
+        <a href="#shop" class="btn btn-primary">Explore Collection</a>
+        <a href="#ai" class="btn btn-outline">Try AI Stylist →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <div class="badge">New Season · Daily Edit</div>
+        <h2 class="serif">Wear the story</h2>
+        <p>Hand-finished pieces inspired by temple motifs, Rajasthani craft & contemporary quiet luxury.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <div class="trust">
+    <div class="trust-inner">
+      <div class="trust-item">✓ Free shipping over ₹1,499</div>
+      <div class="trust-item">✓ Hypoallergenic · Skin-safe</div>
+      <div class="trust-item">✓ 7-day easy returns</div>
+      <div class="trust-item">✓ Made in India</div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <section id="categories">
+    <div class="section-header">
+      <h2>Shop by Ritual</h2>
+      <p>Four daily moments. Pieces chosen for comfort, movement and quiet presence.</p>
+    </div>
+    <div class="categories">
+      <a href="#shop" class="cat-card cat-1">
+        <div class="content">
+          <h3>Morning</h3>
+          <span>Lightweight studs & thin kadas</span>
+        </div>
+      </a>
+      <a href="#shop" class="cat-card cat-2">
+        <div class="content">
+          <h3>Work</h3>
+          <span>Minimal chains & small jhumkas</span>
+        </div>
+      </a>
+      <a href="#shop" class="cat-card cat-3">
+        <div class="content">
+          <h3>Evening</h3>
+          <span>Oxidized drops & layered sets</span>
+        </div>
+      </a>
+      <a href="#shop" class="cat-card cat-4">
+        <div class="content">
+          <h3>Rest</h3>
+          <span>Soft scarves & sleep-friendly pieces</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Product Grid -->
+  <section id="shop">
+    <div class="section-header">
+      <h2>The Daily Edit</h2>
+      <p>Curated everyday Indian jewelry & accessories. Designed to be worn, not just stored.</p>
+    </div>
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/p1MYl.jpg" alt="Temple Bell Jhumkas worn by model" loading="lazy" />
+          <span class="product-badge best">Best Seller</span>
+        </div>
+        <div class="product-info">
+          <h3>Temple Bell Jhumkas</h3>
+          <div class="meta">Gold-plated brass · Lightweight</div>
+          <div class="price-row">
+            <div class="price">₹1,290 <s>₹1,690</s></div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/aTMu9.jpg" alt="Quiet Stack Kadas on wrist" loading="lazy" />
+          <span class="product-badge new">New</span>
+        </div>
+        <div class="product-info">
+          <h3>Quiet Stack Kadas</h3>
+          <div class="meta">Oxidized silver · Set of 3</div>
+          <div class="price-row">
+            <div class="price">₹1,890</div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 3 -->
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/Np9S0.jpg" alt="Collarbone Layers necklace on model" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <h3>Collarbone Layers</h3>
+          <div class="meta">Gold vermeil · 2-strand</div>
+          <div class="price-row">
+            <div class="price">₹2,190</div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 4 -->
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/iDb5T.jpg" alt="Lotus Studs earrings on model" loading="lazy" />
+          <span class="product-badge best">Best Seller</span>
+        </div>
+        <div class="product-info">
+          <h3>Lotus Studs</h3>
+          <div class="meta">Gold-plated · Everyday</div>
+          <div class="price-row">
+            <div class="price">₹890</div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 5 -->
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/MkRl1.jpg" alt="Indigo Block Scarf worn by model" loading="lazy" />
+          <span class="product-badge new">New</span>
+        </div>
+        <div class="product-info">
+          <h3>Indigo Block Scarf</h3>
+          <div class="meta">Hand-block printed silk-cotton</div>
+          <div class="price-row">
+            <div class="price">₹1,490</div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 6 -->
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/CyhW9.jpg" alt="Subtle Nose Pin on model" loading="lazy" />
+        </div>
+        <div class="product-info">
+          <h3>Subtle Nose Pin</h3>
+          <div class="meta">Gold-plated · Screw-back</div>
+          <div class="price-row">
+            <div class="price">₹590</div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 7 -->
+      <article class="product-card">
+        <div class="product-image">
+          <div class="placeholder">
+            <div class="icon">○</div>
+            <span>Thin Gold Bangle<br>(model image coming)</span>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3>Everyday Bangle</h3>
+          <div class="meta">Gold-filled · Single</div>
+          <div class="price-row">
+            <div class="price">₹1,190</div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 8 -->
+      <article class="product-card">
+        <div class="product-image">
+          <div class="placeholder">
+            <div class="icon">✦</div>
+            <span>Oxidized Drop Earrings<br>(model image coming)</span>
+          </div>
+          <span class="product-badge best">Best Seller</span>
+        </div>
+        <div class="product-info">
+          <h3>Moon Drop Earrings</h3>
+          <div class="meta">Oxidized silver · Lightweight</div>
+          <div class="price-row">
+            <div class="price">₹1,390 <s>₹1,790</s></div>
+            <button class="add-btn" aria-label="Add to cart">+</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- AI Banner -->
+  <div class="ai-banner" id="ai">
+    <div>
+      <h2>Meet your AI Stylist</h2>
+      <p>Upload a photo of your outfit or describe your day. Our AI suggests the perfect Nitya pieces — jhumkas for a kurta, a thin kada for work, or a soft scarf for travel — in seconds.</p>
+      <a href="#" class="btn btn-primary">Try free stylist →</a>
+    </div>
+    <div class="ai-visual">
+      <div class="chat-line user">
+        <div class="label">You</div>
+        Cotton kurta + jeans, office day, prefer gold-tone
+      </div>
+      <div class="chat-line">
+        <div class="label">Nitya AI</div>
+        Go with the <strong>Temple Bell Jhumkas</strong> + single <strong>Everyday Bangle</strong>. Clean, lightweight, and works with both Indian and western silhouettes.
+      </div>
+      <div class="chat-line user">
+        <div class="label">You</div>
+        Any scarf that goes with indigo?
+      </div>
+      <div class="chat-line">
+        <div class="label">Nitya AI</div>
+        The <strong>Indigo Block Scarf</strong> is made for this. Soft enough for all-day wear and elevates a simple kurta instantly.
+      </div>
+    </div>
+  </div>
+
+  <!-- Story -->
+  <section id="story">
+    <div class="story">
+      <div class="story-image">
+        <div>
+          <h2 class="serif" style="font-size:1.75rem;margin-bottom:0.5rem;">Crafted for the everyday</h2>
+          <p style="font-size:0.95rem;opacity:0.85;">Jaipur · Delhi · Hyderabad artisans</p>
+        </div>
+      </div>
+      <div class="story-content">
+        <h2>Why Nitya exists</h2>
+        <p>Most Indian jewelry is designed for festivals and weddings. We started Nitya because we wanted pieces that feel natural on a Monday morning — light enough to forget, beautiful enough to notice.</p>
+        <p>Every design is tested for all-day comfort, skin safety, and real Indian weather. We work with small workshops that still hand-finish details you can feel.</p>
+        <a href="#shop" class="btn btn-primary">Shop the collection</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">Nitya<span>.</span></a>
+        <p>Everyday Indian adornments. Designed in India, made for the way you actually live.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Earrings</a></li>
+          <li><a href="#">Bangles & Kadas</a></li>
+          <li><a href="#">Necklaces</a></li>
+          <li><a href="#">Scarves & Soft Goods</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Artisans</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nitya. All rights reserved.</span>
+      <span>Made with care in India · Prototype for GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    // Simple add-to-cart feedback
+    document.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const original = btn.textContent;
+        btn.textContent = '✓';
+        btn.style.background = '#1c1917';
+        btn.style.color = 'white';
+        btn.style.borderColor = '#1c1917';
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.style.borderColor = '';
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>
